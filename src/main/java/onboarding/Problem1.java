@@ -8,6 +8,27 @@ class Problem1 {
         return answer;
     }
 
+    private static int person_max_value(List<Integer> person) {
+        int plus_max_value;
+        int multiple_max_value;
+
+        // 오른쪽 페이지 값으로만 비교?..
+        // (9, 10), (19, 20)의 예를 보면 왼쪽 페이지 값이 큰 경우도 있음. 모두 비교.
+
+        plus_max_value = Math.max(plus_value(person.get(0)), plus_value(person.get(1)));
+        multiple_max_value = Math.max(multiple_value(person.get(0)), multiple_value(person.get(1)));
+
+        return Math.max(plus_max_value, multiple_max_value);
+    }
+
+    public static int pobi_max_value(List<Integer> pobi) {
+        return person_max_value(pobi);
+    }
+
+    public static int crong_max_value(List<Integer> crong) {
+        return person_max_value(crong);
+    }
+
     public static int plus_value(Integer i) {
         int value = 0;
         while(i > 0) {
