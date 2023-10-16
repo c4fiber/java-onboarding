@@ -8,6 +8,22 @@ class Problem1 {
         return answer;
     }
 
+    public static boolean isSequentialNum(List<Integer> person) {
+        return (person.get(0) + 1) == person.get(1);
+    }
+
+    public static boolean isInRangeNum(List<Integer> person) {
+        boolean indexZero = person.get(0) > 0 && person.get(0) < 401;
+        boolean indexOne = person.get(1) > 0 && person.get(1) < 401;
+        return indexZero && indexOne;
+    }
+
+    public static boolean isLOddOrREven(List<Integer> person) {
+        boolean indexZero = (person.get(0) % 2) != 0; // 홀수면 true
+        boolean indexOne = (person.get(1) % 2) == 0; // 짝수면 true
+        return indexZero && indexOne;
+    }
+
     private static int person_max_value(List<Integer> person) {
         int plus_max_value;
         int multiple_max_value;
