@@ -15,8 +15,10 @@ public class Problem3 {
         int answer = 0;
 
         for (int i = number; i <= number; i++) {
-            if (number == 3 || number == 6 || number == 9) {
+            if (i % 10 == 3 || i % 10 == 6 || i % 10 == 9) {
                 answer += 1;
+            }else {
+
             }
 
         }
