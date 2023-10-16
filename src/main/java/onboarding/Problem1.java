@@ -8,3 +8,4 @@ class Problem1 {
         return answer;
     }
 }
+
