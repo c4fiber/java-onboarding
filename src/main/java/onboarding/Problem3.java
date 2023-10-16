@@ -12,9 +12,15 @@ import java.util.Scanner;
  */
 public class Problem3 {
     public static int solution(int number) {
-        Scanner sc = new Scanner(System.in);
-        int str = sc.nextInt();
         int answer = 0;
+
+        for (int i = number; i <= number; i++) {
+            if (number == 3 || number == 6 || number == 9) {
+                answer += 1;
+            }
+
+        }
         return answer;
+
     }
 }
