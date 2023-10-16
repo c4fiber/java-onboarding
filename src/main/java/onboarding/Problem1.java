@@ -9,7 +9,7 @@ class Problem1 {
     }
 
     public static int result(List<Integer> pobi, List<Integer> crong) {
-        // 예외 시 -1
+        // 어떤 예외 상황이 있을까? (예외 시 -1)
         // 1. 페이지가 연달아 있지 않는 경우
         // 2. 페이지가 1 ~ 400 사이의 수가 아닌 경우
         // 3. 왼쪽 페이지가 홀수가 아니거나 오른쪽 페이지가 짝수가 아닌 경우
