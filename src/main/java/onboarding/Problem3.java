@@ -2,12 +2,15 @@ package onboarding;
 
 public class Problem3 {
     public static int solution(int number) {
-        int answer = 0;
+        int answer = countClap(number);
         return answer;
     }
 
     public static int countClap(int number) {
-        
+        int count = 0;
+        for(int i = 1; i <= number; i++)
+            count += isInThree(i) + isInSix(i) + isInNine(i);
+        return count;
     }
 
     public static int isInThree(int number) {
