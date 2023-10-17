@@ -1,11 +1,12 @@
-# 🚀 problem4 기능목록
+# 🚀 problem4 기능 목록
 - - -
-## 1. LengthValidation
-> - word.length() 가 1 이하 1000 이상일 경우
-> - 알파벳이 아닌 경우
+### 1. WordLengthValidation
+> - word 길이가 1 이하 1000 이상인 경우
+> - 알파벳 외의 문자가 들어 올 경우
 
-## 2. ConvertAlphabet
-> - 대문자는 소문자
-> - 소문자는 대문자
-> - A는 z
-> - z 는 A
+### 2. ConvertAlphabet
+> - 대문자가 들어 올 경우 
+>   - 'A' 는 'Z' 로  
+> - 소문자가 들어 올 경우
+>   - 'z' 는 'a' 로
+> - 공백이 들어올 경우

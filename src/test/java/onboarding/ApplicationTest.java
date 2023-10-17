@@ -60,40 +60,46 @@ class ApplicationTest {
 //        }
 //    }
 //
+//    @Nested
+//    class Problem3Test {
+//        @Test
+//        void case1() {
+//            int number = 13;
+//            int result = 4;
+//            assertThat(Problem3.solution(number)).isEqualTo(result);
+//        }
+//
+//        @Test
+//        void case2() {
+//            int number = 33;
+//            int result = 14;
+//            assertThat(Problem3.solution(number)).isEqualTo(result);
+//        }
+//
+//        @Test
+//        void case3() {
+//            int number = -1;
+//            int result = -1;
+//            assertThat(Problem3.solution(number)).isEqualTo(result);
+//        }
+//    }
+
     @Nested
-    class Problem3Test {
+    class Problem4Test {
         @Test
         void case1() {
-            int number = 13;
-            int result = 4;
-            assertThat(Problem3.solution(number)).isEqualTo(result);
+            String word = "I love you";
+            String result = "R olev blf";
+            assertThat(Problem4.solution(word)).isEqualTo(result);
         }
-
         @Test
         void case2() {
-            int number = 33;
-            int result = 14;
-            assertThat(Problem3.solution(number)).isEqualTo(result);
-        }
-
-        @Test
-        void case3() {
-            int number = -1;
-            int result = -1;
-            assertThat(Problem3.solution(number)).isEqualTo(result);
+            String word = "abZ";
+            String result = "ZYa";
+            assertThat(Problem4.solution(word)).isEqualTo(result);
         }
     }
 
-//    @Nested
-//    class Problem4Test {
-//        @Test
-//        void case1() {
-//            String word = "I love you";
-//            String result = "R olev blf";
-//            assertThat(Problem4.solution(word)).isEqualTo(result);
-//        }
-//    }
-//
 //    @Nested
 //    class Problem5Test {
 //        @Test
