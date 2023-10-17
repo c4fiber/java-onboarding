@@ -94,6 +94,7 @@ class ApplicationTest {
         }
         @Test
         void case2() {
+            //test
             String word = "abZ";
             String result = "ZYa";
             assertThat(Problem4.solution(word)).isEqualTo(result);
