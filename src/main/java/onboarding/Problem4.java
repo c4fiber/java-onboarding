@@ -9,6 +9,8 @@ public class Problem4 {
                 answer += (char)(155 -x);
             } else if (x >= 97 && x <= 122) {
                 answer += (char)(219 -x);
+            }else {
+                answer += " ";
             }
         }
         return answer;
