@@ -95,7 +95,14 @@ class ApplicationTest {
         @Test
         void case2() {
             String word = "abZ";
-            String result = "ZYa";
+            String result = "zyA";
+            assertThat(Problem4.solution(word)).isEqualTo(result);
+        }
+
+        @Test
+        void case3() {
+            String word = "Hello World!";
+            String result = "Svool Dliow!";
             assertThat(Problem4.solution(word)).isEqualTo(result);
         }
     }
