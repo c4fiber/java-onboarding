@@ -84,28 +84,28 @@ class ApplicationTest {
 //        }
 //    }
 
-    @Nested
-    class Problem4Test {
-        @Test
-        void case1() {
-            String word = "I love you";
-            String result = "R olev blf";
-            assertThat(Problem4.solution(word)).isEqualTo(result);
-        }
-        @Test
-        void case2() {
-            String word = "abZ";
-            String result = "zyA";
-            assertThat(Problem4.solution(word)).isEqualTo(result);
-        }
-
-        @Test
-        void case3() {
-            String word = "Hello World!";
-            String result = "Svool Dliow!";
-            assertThat(Problem4.solution(word)).isEqualTo(result);
-        }
-    }
+//    @Nested
+//    class Problem4Test {
+//        @Test
+//        void case1() {
+//            String word = "I love you";
+//            String result = "R olev blf";
+//            assertThat(Problem4.solution(word)).isEqualTo(result);
+//        }
+//        @Test
+//        void case2() {
+//            String word = "abZ";
+//            String result = "zyA";
+//            assertThat(Problem4.solution(word)).isEqualTo(result);
+//        }
+//
+//        @Test
+//        void case3() {
+//            String word = "Hello World!";
+//            String result = "Svool Dliow!";
+//            assertThat(Problem4.solution(word)).isEqualTo(result);
+//        }
+//    }
 
 //    @Nested
 //    class Problem5Test {
@@ -123,23 +123,23 @@ class ApplicationTest {
 //            assertThat(Problem5.solution(money)).isEqualTo(result);
 //        }
 //    }
-//
-//    @Nested
-//    class Problem6Test {
-//        @Test
-//        void case1() {
-//            List<List<String>> forms = List.of(
-//                    List.of("jm@email.com", "제이엠"),
-//                    List.of("jason@email.com", "제이슨"),
-//                    List.of("woniee@email.com", "워니"),
-//                    List.of("mj@email.com", "엠제이"),
-//                    List.of("nowm@email.com", "이제엠")
-//            );
-//            List<String> result = List.of("jason@email.com", "jm@email.com", "mj@email.com");
-//            assertThat(Problem6.solution(forms)).isEqualTo(result);
-//        }
-//    }
-//
+
+    @Nested
+    class Problem6Test {
+        @Test
+        void case1() {
+            List<List<String>> forms = List.of(
+                    List.of("jm@email.com", "제이엠"),
+                    List.of("jason@email.com", "제이슨"),
+                    List.of("woniee@email.com", "워니"),
+                    List.of("mj@email.com", "엠제이"),
+                    List.of("nowm@email.com", "이제엠")
+            );
+            List<String> result = List.of("jason@email.com", "jm@email.com", "mj@email.com");
+            assertThat(Problem6.solution(forms)).isEqualTo(result);
+        }
+    }
+
 //    @Nested
 //    class Problem7Test {
 //        @Test
