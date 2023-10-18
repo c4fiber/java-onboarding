@@ -17,7 +17,7 @@ public class ValidationCheck {
         if (length < 11 || length > 19) {
             return false;
         }
-        if (email.substring(length - 10) != "@email.com") {
+        if (!email.substring(length - 10).equals("@email.com")) {
             return false;
         }
         return true;
