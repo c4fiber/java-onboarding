@@ -20,9 +20,9 @@ class Problem1 {
             return -1;
 
         // 포비가 이기면 1, 무승부 0, 크롱이 이기면 2
-        if (pobi_max_value(pobi) > crong_max_value(crong))
+        if (maxValue(pobi) > maxValue(crong))
             return 1;
-        else if (pobi_max_value(pobi) < crong_max_value(crong))
+        else if (maxValue(pobi) < maxValue(crong))
             return 2;
         return 0;
     }
@@ -43,28 +43,20 @@ class Problem1 {
         return indexZero && indexOne;
     }
 
-    private static int person_max_value(List<Integer> person) {
+    private static int maxValue(List<Integer> person) {
         int plus_max_value;
         int multiple_max_value;
 
         // 오른쪽 페이지 값으로만 비교?..
         // (9, 10), (19, 20)의 예를 보면 왼쪽 페이지 값이 큰 경우도 있음. 모두 비교.
 
-        plus_max_value = Math.max(plus_value(person.get(0)), plus_value(person.get(1)));
-        multiple_max_value = Math.max(multiple_value(person.get(0)), multiple_value(person.get(1)));
+        plus_max_value = Math.max(plusValue(person.get(0)), plusValue(person.get(1)));
+        multiple_max_value = Math.max(multipleValue(person.get(0)), multipleValue(person.get(1)));
 
         return Math.max(plus_max_value, multiple_max_value);
     }
 
-    public static int pobi_max_value(List<Integer> pobi) {
-        return person_max_value(pobi);
-    }
-
-    public static int crong_max_value(List<Integer> crong) {
-        return person_max_value(crong);
-    }
-
-    public static int plus_value(Integer i) {
+    public static int plusValue(Integer i) {
         int value = 0;
         while(i > 0) {
             value += i % 10;
@@ -73,7 +65,7 @@ class Problem1 {
         return value;
     }
 
-    public static int multiple_value(Integer i) {
+    public static int multipleValue(Integer i) {
         int value = 1;
         while(i > 0) {
             value *= i % 10;
