@@ -7,7 +7,7 @@ public class Problem4 {
         WordValidation wordValidation = new WordValidation();
         if (wordValidation.ValidateWordLength(word)) {
             ConvertWord convertWord = new ConvertWord();
-            return convertWord.ConvertWord(word);
+            return convertWord.IsAlphabet(word);
         }
 
         String answer = "";
