@@ -1,10 +1,13 @@
 package onboarding;
 
 import java.util.List;
+import hi.Page;
 
 class Problem1 {
     public static int solution(List<Integer> pobi, List<Integer> crong) {
-        int answer = Integer.MAX_VALUE;
-        return answer;
+        Page page = new Page();
+        int score = page.PageValidation(pobi, crong);
+        System.out.println(score);
+        return score;
     }
 }
