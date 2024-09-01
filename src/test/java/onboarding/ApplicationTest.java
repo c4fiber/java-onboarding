@@ -11,7 +11,7 @@ class ApplicationTest {
     @Nested
     class Problem1Test {
         @Test
-        void case1() {
+        void 포비가_우승하는_경우() {
             List<Integer> pobi = List.of(97, 98);
             List<Integer> crong = List.of(197, 198);
             int result = 0;
@@ -19,7 +19,7 @@ class ApplicationTest {
         }
 
         @Test
-        void case2() {
+        void 크롱이_우승하는_경우() {
             List<Integer> pobi = List.of(131, 132);
             List<Integer> crong = List.of(211, 212);
             int result = 1;
@@ -27,9 +27,49 @@ class ApplicationTest {
         }
 
         @Test
-        void case3() {
+        void 페이지가_연속되지_않은_경우() {
             List<Integer> pobi = List.of(99, 102);
             List<Integer> crong = List.of(211, 212);
+            int result = -1;
+            assertThat(Problem1.solution(pobi, crong)).isEqualTo(result);
+        }
+
+        @Test
+        void 왼쪽_페이지_숫자가_더_큰_경우() {
+            List<Integer> pobi = List.of(100, 99);
+            List<Integer> crong = List.of(88, 89);
+            int result = -1;
+            assertThat(Problem1.solution(pobi, crong)).isEqualTo(result);
+        }
+
+        @Test
+        void 페이지가_범위를_벗어난_경우() {
+            List<Integer> pobi = List.of(33, 34);
+            List<Integer> crong = List.of(0, 1);
+            int result = -1;
+            assertThat(Problem1.solution(pobi, crong)).isEqualTo(result);
+        }
+
+        @Test
+        void 왼쪽_페이지가_홀수가_아닌_경우() {
+            List<Integer> pobi = List.of(34, 35);
+            List<Integer> crong = List.of(36, 37);
+            int result = -1;
+            assertThat(Problem1.solution(pobi, crong)).isEqualTo(result);
+        }
+
+        @Test
+        void 오른쪽_페이지가_짝수가_아닌_경우() {
+            List<Integer> pobi = List.of(35, 36);
+            List<Integer> crong = List.of(37, 38);
+            int result = -1;
+            assertThat(Problem1.solution(pobi, crong)).isEqualTo(result);
+        }
+
+        @Test
+        void 두_페이지로_이루어져_있지_않은_경우() {
+            List<Integer> pobi = List.of(35, 36, 37);
+            List<Integer> crong = List.of(37, 38);
             int result = -1;
             assertThat(Problem1.solution(pobi, crong)).isEqualTo(result);
         }
