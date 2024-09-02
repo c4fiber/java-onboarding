@@ -179,11 +179,54 @@ class ApplicationTest {
 
     @Nested
     class Problem4Test {
+        private static final int MIN_LENGTH = 1;
+        private static final int MAX_LENGTH = 1000;
+
         @Test
-        void case1() {
+        void 성공_케이스_1() {
             String word = "I love you";
             String result = "R olev blf";
             assertThat(Problem4.solution(word)).isEqualTo(result);
+        }
+
+        @Test
+        void 성공_케이스_2() {
+            String word = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            String result = "ZYXWVUTSRQPONMLKJIHGFEDCBA";
+
+            assertThat(Problem4.solution(word)).isEqualTo(result);
+        }
+
+        @Test
+        void 성공_케이스_3() {
+            String word = "abcdefghijklmnopqrstuvwxyz";
+            String result = "zyxwvutsrqponmlkjihgfedcba";
+
+            assertThat(Problem4.solution(word)).isEqualTo(result);
+        }
+
+        @Test
+        void 성공_케이스_4() {
+            String word = "zyxwvutsrqponmlkjihgfedcba";
+            String result = "abcdefghijklmnopqrstuvwxyz";
+
+            assertThat(Problem4.solution(word)).isEqualTo(result);
+        }
+
+        @Test
+        void 문자열_최소길이_불충분_예외_처리() {
+            String word = "";
+
+            assertThatThrownBy(() -> Problem4.solution(word))
+                .isInstanceOf(IllegalArgumentException.class);
+        }
+
+        @Test
+        void 문자열_최대길이_초과_예외_처리() {
+            String word = "a".repeat(MAX_LENGTH + 1);
+
+            assertThatThrownBy(() -> Problem4.solution(word))
+                .isInstanceOf(IllegalArgumentException.class);
         }
     }
 
