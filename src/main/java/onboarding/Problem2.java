@@ -51,9 +51,7 @@ public class Problem2 {
     private static void validate(String cryptogram) {
         validateInput(cryptogram);
         validateLength(cryptogram);
-        if (!cryptogram.matches("[a-z]+")) {
-            throw new IllegalArgumentException("Input must be lowercase alphabets");
-        }
+        validateLowerCase(cryptogram);
     }
 
     // 빈 값인지 검증하는 메소드
