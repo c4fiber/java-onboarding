@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 class ApplicationTest {
@@ -275,18 +276,192 @@ class ApplicationTest {
 
     @Nested
     class Problem6Test {
-        @Test
-        void case1() {
-            List<List<String>> forms = List.of(
+        @Nested
+        class 성공_테스트 {
+            @Test
+            void 성공_케이스_1() {
+                List<List<String>> forms = List.of(
                     List.of("jm@email.com", "제이엠"),
                     List.of("jason@email.com", "제이슨"),
                     List.of("woniee@email.com", "워니"),
                     List.of("mj@email.com", "엠제이"),
                     List.of("nowm@email.com", "이제엠")
-            );
-            List<String> result = List.of("jason@email.com", "jm@email.com", "mj@email.com");
-            assertThat(Problem6.solution(forms)).isEqualTo(result);
+                );
+                List<String> result = List.of("jason@email.com", "jm@email.com", "mj@email.com");
+                assertThat(Problem6.solution(forms)).isEqualTo(result);
+            }
+
+            @Test
+            void 성공_케이스_2() {
+                List<List<String>> forms = List.of(
+                    List.of("mj@email.com", "엠제이"),
+                    List.of("jm@email.com", "제이엠"),
+                    List.of("woniee@email.com", "워니"),
+                    List.of("jason@email.com", "제이슨"),
+                    List.of("nowm@email.com", "이제엠")
+                );
+                List<String> result = List.of("jason@email.com", "jm@email.com", "mj@email.com");
+                assertThat(Problem6.solution(forms)).isEqualTo(result);
+            }
+
+            @Test
+            void 성공_케이스_3() {
+                List<List<String>> forms = List.of(
+                    List.of("mj@email.com", "김제이씨"),
+                    List.of("jm@email.com", "박제이엠"),
+                    List.of("woniee@email.com", "워니"),
+                    List.of("jason@email.com", "제이스"),
+                    List.of("nowm@email.com", "이제이슨")
+                );
+                List<String> result = List.of("jason@email.com", "jm@email.com", "mj@email.com", "nowm@email.com");
+                assertThat(Problem6.solution(forms)).isEqualTo(result);
+            }
+
+            @Test
+            void 중복된_이메일이_있는_성공_케이스() {
+                List<List<String>> forms = List.of(
+                    List.of("jm@email.com", "제이엠"),
+                    List.of("jm@email.com", "제이엠피시"),
+                    List.of("woniee@email.com", "워니"),
+                    List.of("mj@email.com", "엠제이"),
+                    List.of("nowm@email.com", "이제엠")
+                );
+
+                List<String> result = List.of("jm@email.com", "mj@email.com");
+                assertThat(Problem6.solution(forms)).isEqualTo(result);
+            }
         }
+        @Nested
+        class 크루원_제한사항_테스트 {
+            private static final int MIN_FORMS = 1;
+            private static final int MAX_FORMS = 1000;
+
+            @Test
+            void 크루원_최소_제한사항보다_작은_경우() {
+                List<List<String>> forms = List.of();
+
+                assertThatThrownBy(() -> Problem6.solution(forms))
+                    .isInstanceOf(IllegalArgumentException.class);
+            }
+
+            @Test
+            void 크루원_최대_제한사항보다_큰_경우() {
+                List<List<String>> forms = new ArrayList<>();
+                for (int i = 0; i <= MAX_FORMS; i++) {
+                    forms.add(List.of("jm@email.com", "제이슨"));
+                }
+
+                assertThatThrownBy(() -> Problem6.solution(forms))
+                    .isInstanceOf(IllegalArgumentException.class);
+            }
+
+            @Test
+            void 크루원_정보가_이메일과_닉네임으로_구성되지_않은_경우() {
+                List<List<String>> forms = List.of(
+                    List.of("Some", "Form", "Data")
+                );
+
+                assertThatThrownBy(() -> Problem6.solution(forms))
+                    .isInstanceOf(IllegalArgumentException.class);
+            }
+        }
+
+        @Nested
+        class 닉네임_예외_테스트 {
+            private static final int MIN_NICKNAME_LENGTH = 1;
+            private static final int MAX_NICKNAME_LENGTH = 20;
+            private static final String NICKNAME_REGEX = "^[가-힣]*$";
+
+            @Test
+            void 닉네임_길이가_최소_길이보다_작은_경우() {
+                List<List<String>> forms = List.of(
+                    List.of("jm@email.com", "")
+                );
+
+                assertThatThrownBy(() -> Problem6.solution(forms))
+                    .isInstanceOf(IllegalArgumentException.class);
+            }
+
+            @Test
+            void 닉네임_길이가_최대_길이보다_긴_경우() {
+                List<List<String>> forms = List.of(
+                    List.of("jm@email.com", "가".repeat(MAX_NICKNAME_LENGTH + 1))
+                );
+
+                assertThatThrownBy(() -> Problem6.solution(forms))
+                    .isInstanceOf(IllegalArgumentException.class);
+            }
+
+            @Test
+            void 닉네임에_한글이_아닌_경우() {
+                List<List<String>> forms = List.of(
+                    List.of("jm@email.com", "jm")
+                );
+
+                assertThatThrownBy(() -> Problem6.solution(forms))
+                    .isInstanceOf(IllegalArgumentException.class);
+            }
+        }
+
+        @Nested
+        class 이메일_예외_테스트 {
+            private static final int MIN_EMAIL_LENGTH = 11;
+            private static final int MAX_EMAIL_LENGTH = 20;
+            private static final String EMAIL_DOMAIN = "email.com";
+            private static final String EMAIL_REGEX = "^[a-zA-Z0-9]+@[a-zA-Z0-9]+\\." + EMAIL_DOMAIN + "$";
+
+            @Test
+            void 이메일_형식이_아닌_경우() {
+                List<List<String>> forms = List.of(
+                    List.of("jmjmjm#email.com", "제이엠")
+                );
+
+                assertThatThrownBy(() -> Problem6.solution(forms))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining("형식");
+            }
+
+            @Test
+            void 이메일_길이가_최소_길이보다_작은_경우() {
+                List<List<String>> forms = List.of(
+                    List.of("@email.com", "제이엠")
+                );
+
+                assertThatThrownBy(() -> Problem6.solution(forms))
+                    .isInstanceOf(IllegalArgumentException.class);
+            }
+
+            @Test
+            void 이메일_길이가_최대_길이보다_긴_경우() {
+                List<List<String>> forms = List.of(
+                    List.of("a".repeat(MAX_EMAIL_LENGTH) + "@email.com", "제이엠")
+                );
+
+                assertThatThrownBy(() -> Problem6.solution(forms))
+                    .isInstanceOf(IllegalArgumentException.class);
+            }
+
+            @Test
+            void 이메일_도메인이_다른_경우() {
+                List<List<String>> forms = List.of(
+                    List.of("jm@wrong.com", "제이엠")
+                );
+
+                assertThatThrownBy(() -> Problem6.solution(forms))
+                    .isInstanceOf(IllegalArgumentException.class);
+            }
+
+            @Test
+            void 이메일에_한글이_있는_경우() {
+                List<List<String>> forms = List.of(
+                    List.of("제이엠@email.com", "제이엠")
+                );
+
+                assertThatThrownBy(() -> Problem6.solution(forms))
+                    .isInstanceOf(IllegalArgumentException.class);
+            }
+        }
+
     }
 
     @Nested
