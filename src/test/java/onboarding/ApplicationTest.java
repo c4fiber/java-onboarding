@@ -136,18 +136,44 @@ class ApplicationTest {
 
     @Nested
     class Problem3Test {
+        private static final int MIN_NUMBER = 1;
+        private static final int MAX_NUMBER = 100_000_000;
+
         @Test
-        void case1() {
+        void 성공_케이스_1() {
             int number = 13;
             int result = 4;
             assertThat(Problem3.solution(number)).isEqualTo(result);
         }
 
         @Test
-        void case2() {
+        void 성공_케이스_2() {
             int number = 33;
             int result = 14;
             assertThat(Problem3.solution(number)).isEqualTo(result);
+        }
+
+        @Test
+        void 성공_케이스_3() {
+            int number = 1;
+            int result = 0;
+            assertThat(Problem3.solution(number)).isEqualTo(result);
+        }
+
+        @Test
+        void 숫자_범위_초과_예외_처리() {
+            int number = MAX_NUMBER + 1;
+
+            assertThatThrownBy(() -> Problem3.solution(number))
+                .isInstanceOf(IllegalArgumentException.class);
+        }
+
+        @Test
+        void 숫자_범위_미만_예외_처리() {
+            int number = MIN_NUMBER - 1;
+
+            assertThatThrownBy(() -> Problem3.solution(number))
+                .isInstanceOf(IllegalArgumentException.class);
         }
     }
 
