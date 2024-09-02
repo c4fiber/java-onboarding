@@ -232,18 +232,44 @@ class ApplicationTest {
 
     @Nested
     class Problem5Test {
+        private static final int MIN_MONEY = 1;
+        private static final int MAX_MONEY = 1_000_000_000;
+
         @Test
-        void case1() {
+        void 성공_케이스_1() {
             int money = 50_237;
             List<Integer> result = List.of(1, 0, 0, 0, 0, 2, 0, 3, 7);
             assertThat(Problem5.solution(money)).isEqualTo(result);
         }
 
         @Test
-        void case2() {
+        void 성공_케이스_2() {
             int money = 15_000;
             List<Integer> result = List.of(0, 1, 1, 0, 0, 0, 0, 0, 0);
             assertThat(Problem5.solution(money)).isEqualTo(result);
+        }
+
+        @Test
+        void 성공_케이스_3() {
+            int money = 1;
+            List<Integer> result = List.of(0, 0, 0, 0, 0, 0, 0, 0, 1);
+            assertThat(Problem5.solution(money)).isEqualTo(result);
+        }
+
+        @Test
+        void 금액_범위_초과_예외_처리() {
+            int money = MAX_MONEY + 1;
+
+            assertThatThrownBy(() -> Problem5.solution(money))
+                .isInstanceOf(IllegalArgumentException.class);
+        }
+
+        @Test
+        void 금액_범위_미만_예외_처리() {
+            int money = MIN_MONEY - 1;
+
+            assertThatThrownBy(() -> Problem5.solution(money))
+                .isInstanceOf(IllegalArgumentException.class);
         }
     }
 
