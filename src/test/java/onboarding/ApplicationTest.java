@@ -92,6 +92,13 @@ class ApplicationTest {
         }
 
         @Test
+        void 해독_성공_케이스_3() {
+            String cryptogram = "aaabbbacccbcccbc"; // "aaabbbacccbbc" -> "aaabbbacccc" -> "aaabbba" -> "aaaa" -> ""
+            String result = "";
+            assertThat(Problem2.solution(cryptogram)).isEqualTo(result);
+        }
+
+        @Test
         void 문자열_최소길이_불충분_예외_처리() {
             String cryptogram = "";
 
