@@ -1,11 +1,11 @@
 package onboarding;
 
+import static org.assertj.core.api.Assertions.*;
+
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 class ApplicationTest {
     @Nested
@@ -78,17 +78,49 @@ class ApplicationTest {
     @Nested
     class Problem2Test {
         @Test
-        void case1() {
+        void 해독_성공_케이스_1() {
             String cryptogram = "browoanoommnaon";
             String result = "brown";
             assertThat(Problem2.solution(cryptogram)).isEqualTo(result);
         }
 
         @Test
-        void case2() {
+        void 해독_성공_케이스_2() {
             String cryptogram = "zyelleyz";
             String result = "";
             assertThat(Problem2.solution(cryptogram)).isEqualTo(result);
+        }
+
+        @Test
+        void 문자열_최소길이_불충분_예외_처리() {
+            String cryptogram = "";
+
+            assertThatThrownBy(() -> Problem2.solution(cryptogram))
+                .isInstanceOf(IllegalArgumentException.class);
+        }
+
+        @Test
+        void 문자열_최대길이_초과_예외_처리() {
+            String cryptogram = "a".repeat(1_000_001);
+
+            assertThatThrownBy(() -> Problem2.solution(cryptogram))
+                .isInstanceOf(IllegalArgumentException.class);
+        }
+
+        @Test
+        void 대문자가_있는_경우_예외_처리() {
+            String cryptogram = "aA";
+
+            assertThatThrownBy(() -> Problem2.solution(cryptogram))
+                .isInstanceOf(IllegalArgumentException.class);
+        }
+
+        @Test
+        void 한글이_있는_경우_예외_처리() {
+            String cryptogram = "a가";
+
+            assertThatThrownBy(() -> Problem2.solution(cryptogram))
+                .isInstanceOf(IllegalArgumentException.class);
         }
     }
 
