@@ -77,6 +77,9 @@ class ApplicationTest {
 
     @Nested
     class Problem2Test {
+        private static final int MIN_LENGTH = 1;
+        private static final int MAX_LENGTH = 1000;
+
         @Test
         void 해독_성공_케이스_1() {
             String cryptogram = "browoanoommnaon";
@@ -108,7 +111,7 @@ class ApplicationTest {
 
         @Test
         void 문자열_최대길이_초과_예외_처리() {
-            String cryptogram = "a".repeat(1_000_001);
+            String cryptogram = "a".repeat(MAX_LENGTH + 1);
 
             assertThatThrownBy(() -> Problem2.solution(cryptogram))
                 .isInstanceOf(IllegalArgumentException.class);
