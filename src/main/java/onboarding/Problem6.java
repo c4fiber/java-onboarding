@@ -28,14 +28,14 @@ public class Problem6 {
     }
 
     private static List<String> solve(List<List<String>> forms) {
-        Set<String> result = findDuplicatedNickname(forms);
+        Set<String> result = findEmailsWithSimilarNicknames(forms);
 
         return result.stream()
             .sorted()
             .collect(Collectors.toUnmodifiableList());
     }
 
-    private static Set<String> findDuplicatedNickname(List<List<String>> forms) {
+    private static Set<String> findEmailsWithSimilarNicknames(List<List<String>> forms) {
         // 나와 닉네임이 중복되는 사람이 있는지 찾는다 (내 뒷사람만 찾으면 됨)
         // 닉네임이 중복되는 경우, 그 사람의 이메일을 Set에 저장한다 (중복방지)
 
@@ -49,7 +49,7 @@ public class Problem6 {
                 String otherEmail = forms.get(j).get(0);
                 String otherNickname = forms.get(j).get(1);
 
-                if (isDuplicatedNickname(myNickname, otherNickname)) {
+                if (isSimilarNickname(myNickname, otherNickname)) {
                     result.add(myEmail);
                     result.add(otherEmail);
                 }
@@ -59,7 +59,7 @@ public class Problem6 {
         return result;
     }
 
-    private static boolean isDuplicatedNickname(String myNickname, String otherNickname) {
+    private static boolean isSimilarNickname(String myNickname, String otherNickname) {
         int length = Math.min(myNickname.length(), otherNickname.length());
 
         for (int i = 0; i < length; i++) {
