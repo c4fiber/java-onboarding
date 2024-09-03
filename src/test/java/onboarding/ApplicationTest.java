@@ -51,13 +51,13 @@ class ApplicationTest {
             assertThat(Problem1.solution(pobi, crong)).isEqualTo(result);
         }
 
-        @Test
-        void 왼쪽_페이지가_홀수가_아닌_경우() {
-            List<Integer> pobi = List.of(34, 35);
-            List<Integer> crong = List.of(36, 37);
-            int result = -1;
-            assertThat(Problem1.solution(pobi, crong)).isEqualTo(result);
-        }
+		@Test
+		void 왼쪽_페이지가_홀수가_아닌_경우_또는_오른쪽_페이지가_짝수가_아닌_경우() {
+			List<Integer> pobi = List.of(34, 35);
+			List<Integer> crong = List.of(36, 37);
+			int result = -1;
+			assertThat(Problem1.solution(pobi, crong)).isEqualTo(result);
+		}
 
         @Test
         void 오른쪽_페이지가_짝수가_아닌_경우() {
